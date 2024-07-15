@@ -16,9 +16,9 @@ function App() {
 			<div className="container">
 				<Routes>
 					<Route path="/" element={<MainPage />} />
-					<Route path="/models/" element={<VehicleModelList />} />
-					<Route path="/manufacturers/create/" element={<CreateManufacturerForm />} />
-					<Route path="/automobiles/create/" element={<CreateAutomobileForm />} />
+					<Route path="/models" element={<VehicleModelList />} />
+					<Route path="/manufacturers/create" element={<CreateManufacturerForm />} />
+					<Route path="/automobiles/create" element={<CreateAutomobileForm />} />
 					<Route path="/manufacturers" element={<ManufacturerList />} />
 					<Route path="/automobiles" element={<AutomobileList />} />
 					<Route path="/models/create" element={<ModelForm />} />
