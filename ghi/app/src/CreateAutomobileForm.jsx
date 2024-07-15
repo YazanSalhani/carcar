@@ -48,7 +48,7 @@ function CreateAutomobileForm() {
         data.vin = vin;
         data.model_id = model;
 
-        console.log(data)
+
 
         const url = 'http://localhost:8100/api/automobiles/'
         const fetchConfig = {
