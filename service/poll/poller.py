@@ -14,7 +14,7 @@ django.setup()
 from service_rest.models import AutomobileVO
 
 def get_automobile():
-    response = requests.get("http://localhost:8100/api/automobiles/")
+    response = requests.get("http://inventory-api:8000/api/automobiles/")
     content = json.loads(response.content)
     print(content)
     for automobile in content["autos"]:
