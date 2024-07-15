@@ -18,6 +18,7 @@ function AutomobileList() {
             console.error(error);
         }
     }
+
     useEffect(() => {
         fetchData();
     }, []);
