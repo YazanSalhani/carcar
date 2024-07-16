@@ -5,6 +5,7 @@ import time
 import json
 import requests
 
+
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
 django.setup()
@@ -22,6 +23,7 @@ def get_automobile():
             vin=automobile["vin"],
             sold=automobile["sold"]
         )
+
 
 def poll():
     while True:
