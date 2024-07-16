@@ -113,3 +113,30 @@ def api_appointments(request):
                 {"message": "Invalid technician id"},
                 status=400,
             )
+
+
+@require_http_methods(["DELETE", "GET"])
+def api_appointment(request,pk):
+    if request.method == "GET":
+        try:
+            appointment = Appointments.objects.get(id=pk)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentsEncoder,
+                safe=False
+            )
+        except appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
+    else:
+        try:
+            appointment = Appointments.objects.get(id=pk)
+            appointment.delete()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentsEncoder,
+                safe=False,
+            )
+        except Appointments.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
