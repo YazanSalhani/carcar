@@ -25,6 +25,9 @@ function Nav() {
               <li className="nav-item">
                 <NavLink to="/automobiles/create" className="nav-link" id="create-automobile-link" aria-current="page">Create an Automobile</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/salespeople" className="nav-link" id="salespeople-link" aria-current="page">Salespeople</NavLink>
+              </li>
             </ul>
         </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
