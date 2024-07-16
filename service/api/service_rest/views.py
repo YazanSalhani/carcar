@@ -115,7 +115,7 @@ def api_appointments(request):
             )
 
 
-@require_http_methods(["DELETE", "GET"])
+@require_http_methods(["DELETE", "GET", "PUT"])
 def api_appointment(request,pk):
     if request.method == "GET":
         try:
@@ -125,18 +125,16 @@ def api_appointment(request,pk):
                 encoder=AppointmentsEncoder,
                 safe=False
             )
-        except appointment.DoesNotExist:
+        except Appointments.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
-    else:
+    elif request.method == "DELETE":
         try:
             appointment = Appointments.objects.get(id=pk)
             appointment.delete()
-            return JsonResponse(
-                appointment,
-                encoder=AppointmentsEncoder,
-                safe=False,
-            )
+            return JsonResponse({"message": "Appointment was deleted"})
         except Appointments.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
+    else:
+        pass
