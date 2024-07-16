@@ -11,12 +11,12 @@ function SalespersonList() {
 
             if (response.ok) {
                 const data = await response.json();
-                setSalespeople(data.salespeople)
+                setSalespeople(data.salespeople);
             } else {
-                console.error(response)
+                console.error(response);
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 

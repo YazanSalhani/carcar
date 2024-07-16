@@ -11,12 +11,12 @@ function CustomerList() {
 
             if (response.ok) {
                 const data = await response.json();
-                setCustomers(data.customers)
+                setCustomers(data.customers);
             } else {
-                console.error(response)
+                console.error(response);
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 
