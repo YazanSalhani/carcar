@@ -16,7 +16,7 @@ function SalespersonList() {
                 console.error(response)
             }
         } catch (error) {
-            console.error(error0)
+            console.error(error)
         }
     }
 
