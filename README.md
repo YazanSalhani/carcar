@@ -36,16 +36,16 @@ Each salesperson will be an object containing four keys ("first_name", "last_nam
 
 E.g. (if there was only one salesperson in the database):
 
-{
-    "salespeople": [
-        {
-            "first_name": "Arielle",
-            "last_name": "Adams",
-            "employee_id": "aadams",
-            "id": 1
-        }
-    ]
-}
+{ <br>
+    "salespeople": [ <br>
+        { <br>
+            "first_name": "Arielle", <br>
+            "last_name": "Adams", <br>
+            "employee_id": "aadams", <br>
+            "id": 1 <br>
+        } <br>
+    ] <br>
+} <br>
 
 
 
