@@ -20,13 +20,33 @@ Team:
 
 ### Sales Microservice
 
-#### Salespeople Entity
+#### Salespeople
 
-| Action                        | Method | URL                                           | Explanation                                                                                                                                                                                               | Example                                                                                                                                                                                                         |
-|-------------------------------|--------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| List all salespeople          | GET    | http://localhost:8090/api/salespeople/        | Returns an object with one key ("salespeople"), whose value is a an array containing all salespeople objects in the database.      The "employee_id" property of each salesperson object will be unique.  | E.g. (if there was one salesperson in database):         {   "salespeople": [       {         "first_name": string,         "last_name": string,         "employee_id": string,       "id": number      }   ] } |
-| Create a new salesperson      | POST   | http://localhost:8090/api/salespeople/        |                                                                                                                                                                                                           |                                                                                                                                                                                                                 |
-| Delete a specific salesperson | DELETE | http://localhost:8090/api/salespeople/int:pk/ |                                                                                                                                                                                                           |                                                                                                                                                                                                                 |
+| Action                        | Method | URL                                           |
+|-------------------------------|--------|-----------------------------------------------|
+| List all salespeople          | GET    | http://localhost:8090/api/salespeople/        |
+| Create a new salesperson      | POST   | http://localhost:8090/api/salespeople/        |
+| Delete a specific salesperson | DELETE | http://localhost:8090/api/salespeople/int:pk/ |
+
+##### List all salespeople:
+
+Returns a dictionary with one key ("salespeople"), whose value is a list of all salesperson objects in the database.
+
+Each salesperson will be an object containing four keys ("first_name", "last_name", and "employee_id", and "id"), with the "employee_id" and "id" values being unique.
+
+E.g. (if there was only one salesperson in the database):
+
+{
+    "salespeople": [
+        {
+            "first_name": "Arielle",
+            "last_name": "Adams",
+            "employee_id": "aadams",
+            "id": 1
+        }
+    ]
+}
+
 
 
 ### Services Microservice
