@@ -43,6 +43,9 @@ function Nav() {
               <li className="nav-item">
                 <NavLink to="/sales/create" className="nav-link" id="create-sale-link" aria-current="page">Record a Sale</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/sales/history" className="nav-link" id="sales-history-link" aria-current="page">Sales History</NavLink>
+              </li>
             </ul>
         </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -127,7 +127,7 @@ function SaleForm() {
                     >
                     <option value="">Choose an automobile VIN</option>
                     {automobiles.map(automobile => {
-                        if (automobile.sold === false){
+                        if (automobile.sold === false) {
                             return (
                                 <option key={automobile.vin} value={automobile.id}>
                                     {automobile.vin}
