@@ -14,7 +14,6 @@ import SalespersonForm from "./SalespersonForm";
 import CustomerForm from "./CustomerForm";
 import SaleForm from "./SaleForm";
 import SalesHistory from "./SalesHistory";
-
 import CreateTechnicianForm from "./CreateTechnicianForm";
 import CreateAppointmentForm from "./CreateAppointmentForm";
 import TechniciansList from "./TechniciansList";
