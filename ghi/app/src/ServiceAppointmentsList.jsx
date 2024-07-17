@@ -3,6 +3,7 @@ import React, { useState,useEffect } from "react";
 
 function ServiceAppointmentsList() {
     const [appointments, setAppointments] = useState([]);
+    const [soldVins, setSoldVins] = useState([]);
 
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -19,9 +20,68 @@ function ServiceAppointmentsList() {
             console.error(error);
         }
     }
+
     useEffect(() => {
         fetchData();
+        fetchSoldVins();
     }, []);
+
+    async function appointmentCancel(id){
+        const appointmentCancelUrl = `http://localhost:8080/api/appointments/${id}/cancel/`;
+
+        const fetchConfig = {
+            method: "put",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: 'cancelled' })
+        };
+        const response = await fetch(appointmentCancelUrl, fetchConfig);
+
+        if (response.ok) {
+            const data = await response.json();
+            fetchData();
+        }
+    }
+
+    async function appointmentFinish(id){
+        const appointmentCancelUrl = `http://localhost:8080/api/appointments/${id}/finish/`;
+
+        const fetchConfig = {
+            method: "put",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: 'finished' })
+        };
+        const response = await fetch(appointmentCancelUrl, fetchConfig);
+
+        if (response.ok) {
+            const data = await response.json();
+            fetchData();
+        }
+    }
+
+
+    const fetchSoldVins = async () => {
+        const automobilesurl = 'http://localhost:8100/api/automobiles/';
+
+        try {
+            const response = await fetch(automobilesurl);
+            if (response.ok) {
+                const data = await response.json();
+                const soldVins = data.autos
+                    .filter(car => car.sold === true)
+                    .map(car => car.vin);
+                setSoldVins(soldVins);
+            } else {
+                console.error(response)
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     return (
         <>
@@ -41,24 +101,19 @@ function ServiceAppointmentsList() {
             </thead>
             <tbody>
             {appointments.map(appointment => {
-                let vip;
-                if (appointment.vip) {
-                    vip = "Yes"
-                } else {
-                    vip = "No"
-                }
-                if (appointment.status !== "canceled" || appointment.status !== "finished") {
+                const isVip = soldVins.includes(appointment.vin) ? "Yes" : "No";
+                if (appointment.status !== "cancelled" && appointment.status !== "finished") {
                     return (
                         <tr key={ appointment.id }>
                             <td>{ appointment.vin }</td>
-                            <td>{ vip }</td>
+                            <td>{ isVip }</td>
                             <td>{ appointment.customer }</td>
                             <td>{ appointment.date_time }</td>
                             <td>{ appointment.technician.first_name } { appointment.technician.last_name }</td>
                             <td>{ appointment.reason }</td>
                             <td>
-                                <button type="button" className="btn btn-danger">Cancel</button>
-                                <button type="button" className="btn btn-success">Finish</button>
+                                <button onClick={() => appointmentCancel(appointment.id)} type="button" className="btn btn-danger">Cancel</button>
+                                <button onClick={() => appointmentFinish(appointment.id)} type="button" className="btn btn-success">Finish</button>
                             </td>
                         </tr>
                     );

@@ -3,39 +3,9 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import Appointments, Technician, AutomobileVO
-from common.json import ModelEncoder
+from common.json import AppointmentsEncoder, TechnicianEncoder
 # Create your views here.
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = [
-        "vin",
-        "sold"
-    ]
 
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = [
-        "first_name",
-        "last_name",
-        "employee_id",
-        "id"
-    ]
-
-class AppointmentsEncoder(ModelEncoder):
-    model = Appointments
-    properties = [
-        "date_time",
-        "reason",
-        "status",
-        "vin",
-        "vip",
-        "customer",
-        "technician",
-        "id"
-    ]
-    encoders = {
-        "technician": TechnicianEncoder(),
-    }
 
 
 @require_http_methods(["GET", "POST"])
@@ -137,4 +107,19 @@ def api_appointment(request,pk):
         except Appointments.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
     else:
-        pass
+        try:
+            content = json.loads(request.body)
+            if "status" in content:
+                appointment = Appointments.objects.get(id=pk)
+                appointment.status = content["status"]
+                appointment.save()
+                return JsonResponse(
+                    appointment,
+                    encoder=AppointmentsEncoder,
+                    safe=False,
+                )
+            else:
+                return JsonResponse({"message": "Status field is required"}, status=400)
+
+        except Appointments.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"}, status=404)
