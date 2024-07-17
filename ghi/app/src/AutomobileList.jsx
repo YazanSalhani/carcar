@@ -25,7 +25,9 @@ function AutomobileList() {
 
 
     return (
-        <table className="table table-striped">
+        <div>
+            <h1>Automobiles</h1>
+            <table className="table table-striped">
             <thead>
                 <tr>
                     <th>VIN</th>
@@ -57,6 +59,8 @@ function AutomobileList() {
             })}
             </tbody>
         </table>
+        </div>
+
     );
 }
 

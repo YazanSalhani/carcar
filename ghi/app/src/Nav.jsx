@@ -25,6 +25,27 @@ function Nav() {
               <li className="nav-item">
                 <NavLink to="/automobiles/create" className="nav-link" id="create-automobile-link" aria-current="page">Create an Automobile</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/salespeople" className="nav-link" id="salespeople-link" aria-current="page">Salespeople</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/salespeople/create" className="nav-link" id="create-salesperson-link" aria-current="page">Add a Salesperson</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/customers" className="nav-link" id="customers-link" aria-current="page">Customers</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/customers/create" className="nav-link" id="create-customer-link" aria-current="page">Add a Customer</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/sales" className="nav-link" id="sales-link" aria-current="page">Sales</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/sales/create" className="nav-link" id="create-sale-link" aria-current="page">Record a Sale</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/sales/history" className="nav-link" id="sales-history-link" aria-current="page">Sales History</NavLink>
+              </li>
             </ul>
         </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

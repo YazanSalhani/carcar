@@ -24,7 +24,9 @@ function ManufacturerList() {
     }, []);
 
     return (
-        <table className="table table-striped">
+        <div>
+            <h1>Manufacturers</h1>
+            <table className="table table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -40,6 +42,8 @@ function ManufacturerList() {
             })}
             </tbody>
         </table>
+        </div>
+
     );
 }
 
