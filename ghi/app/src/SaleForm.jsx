@@ -62,16 +62,38 @@ function SaleForm() {
         setPrice(value);
     }
 
+    async function handleSold(vin) {
+
+        const url = `http://localhost:8100/api/automobiles/${vin}/`
+
+        const fetchConfig = {
+            method: 'put',
+            body: JSON.stringify({"sold": true}),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
+        const response = await fetch(url, fetchConfig)
+
+        if (response.ok) {
+            const data = await response.json()
+        } else {
+            console.error(`Error: ${response.status} ${response.statusText}`);
+        }
+    }
+
+
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const data = {}
+        handleSold(automobile)
 
+        const data = {}
         data.automobile = automobile;
         data.salesperson = salesperson;
         data.customer = customer;
         data.price = price;
-        console.log(data)
 
         const url = 'http://localhost:8090/api/sales/'
         const fetchConfig = {
@@ -88,10 +110,12 @@ function SaleForm() {
             if (response.ok) {
                 const newSale = await response.json();
 
+
                 setAutomobile('');
                 setSalesperson('');
                 setCustomer('');
                 setPrice('');
+
             } else {
                 console.error(`Error: ${response.status} ${response.statusText}`)
             }
@@ -104,7 +128,7 @@ function SaleForm() {
         fetchAutomobiles();
         fetchCustomers();
         fetchSalespeople();
-    }, [])
+    }, [automobiles])
 
 
     return (
@@ -129,7 +153,7 @@ function SaleForm() {
                     {automobiles.map(automobile => {
                         if (automobile.sold === false) {
                             return (
-                                <option key={automobile.vin} value={automobile.id}>
+                                <option key={automobile.vin} value={automobile.vin}>
                                     {automobile.vin}
                                 </option>
                             )

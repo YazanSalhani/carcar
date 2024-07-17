@@ -109,8 +109,8 @@ def api_list_sales(request):
         content = json.loads(request.body)
 
         try:
-            automobile_vo_id = content["automobile"]
-            automobile = AutomobileVO.objects.get(id=automobile_vo_id)
+            automobile_vo_vin = content["automobile"]
+            automobile = AutomobileVO.objects.get(vin=automobile_vo_vin)
             content["automobile"] = automobile
 
             salesperson_id = content["salesperson"]
