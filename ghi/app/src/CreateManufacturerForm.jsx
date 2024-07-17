@@ -50,6 +50,7 @@ function CreateManufacturerForm() {
                   <form onSubmit={handleSubmit} id="create-conference-form">
                     <div className="form-floating mb-3">
                         <input value={manufacturer} onChange={handleManufacturerChange} placeholder="Manufacturer name" required type="text" name="manufacturer" className="form-control" />
+                        <label htmlFor="fabric">Manufacturer name</label>
                     </div>
                     <button className="btn btn-primary">Create</button>
                   </form>

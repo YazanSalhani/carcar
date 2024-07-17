@@ -44,7 +44,7 @@ function ModelForm() {
         const response = await fetch(modelUrl, fetchConfig);
         if (response.ok) {
             const newModel = await response.json();
-            console.log(newModel);
+
             setModelName('');
             setPictureUrl('');
             setManufacturer('');
@@ -73,11 +73,11 @@ function ModelForm() {
                 <form onSubmit={handleSubmit} id="create-location-form">
                 <div className="form-floating mb-3">
                     <input value={modelName} onChange={handleModelChange} placeholder="Model name" required type="text" name="modelName" id="modelName" className="form-control" />
-                    <label htmlFor="fabric">Model name</label>
+                    <label htmlFor="modelName">Model name</label>
                 </div>
                 <div className="form-floating mb-3">
                     <input value={pictureUrl} onChange={handlePictureUrlChange} placeholder="Picture URL" required type="text" name="pictureUrl" id="pictureUrl" className="form-control" />
-                    <label htmlFor="picture">Picture URL</label>
+                    <label htmlFor="pictureUrl">Picture URL</label>
                 </div>
                 <div className="mb-3">
                     <select value={manufacturer} onChange={handleManufacturerChange} required name="manufacturer" id="manufacturer" className="form-select">
