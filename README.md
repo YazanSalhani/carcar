@@ -68,7 +68,7 @@ The body of the POST request should follow this structure, and the data returned
 
 ##### Delete a salesperson:
 
-Deletes a specific salesperson from the database . The return value will be a dictionary containing a message of success or failure.
+Deletes a specific salesperson (as specified by the int:pk) from the database . The return value will be a dictionary containing a message of success or failure.
 
 If the salesperson was successfully deleted, the return will be:
 
@@ -76,7 +76,9 @@ If the salesperson was successfully deleted, the return will be:
 
 If the salesperson was not successfully deleted, the return will be:
 
-{ "deleted": true }
+{ "deleted": false }
+
+
 
 
 #### Customers
@@ -129,7 +131,7 @@ The body of the POST request should follow this structure, and the data returned
 
 ##### Delete a customer:
 
-Deletes a specific customer from the database. The return value will be a dictionary containing a message of success or failure.
+Deletes a specific customer (as specified by the int:pk) from the database. The return value will be a dictionary containing a message of success or failure.
 
 If the customer was successfully deleted, the return will be:
 
@@ -137,7 +139,9 @@ If the customer was successfully deleted, the return will be:
 
 If the customer was not successfully deleted, the return will be:
 
-{ "deleted": true }
+{ "deleted": false }
+
+
 
 
 #### Sales
@@ -228,7 +232,7 @@ The data returned will also follow this structure:
 
 ##### Delete a sale:
 
-Deletes a specific sale from the database. The return value will be a dictionary containing a message of success or failure.
+Deletes a specific sale (as specified by the int:pk) from the database. The return value will be a dictionary containing a message of success or failure.
 
 If the sale was successfully deleted, the return will be:
 
@@ -236,7 +240,7 @@ If the sale was successfully deleted, the return will be:
 
 If the sale was not successfully deleted, the return will be:
 
-{ "deleted": true }
+{ "deleted": false }
 
 
 
