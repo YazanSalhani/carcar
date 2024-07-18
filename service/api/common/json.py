@@ -2,6 +2,7 @@ from json import JSONEncoder
 from django.urls import NoReverseMatch
 from django.db.models import QuerySet
 from datetime import datetime, date
+from service_rest.models import Appointments, AutomobileVO, Technician
 
 
 class DateEncoder(JSONEncoder):
@@ -44,3 +45,36 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
 
     def get_extra_data(self, o):
         return {}
+
+
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "vin",
+        "sold"
+    ]
+
+class TechnicianEncoder(ModelEncoder):
+    model = Technician
+    properties = [
+        "first_name",
+        "last_name",
+        "employee_id",
+        "id"
+    ]
+
+class AppointmentsEncoder(ModelEncoder):
+    model = Appointments
+    properties = [
+        "date_time",
+        "reason",
+        "status",
+        "vin",
+        "vip",
+        "customer",
+        "technician",
+        "id"
+    ]
+    encoders = {
+        "technician": TechnicianEncoder(),
+    }

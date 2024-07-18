@@ -5,6 +5,7 @@ import time
 import json
 import requests
 
+
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
 django.setup()
@@ -20,8 +21,9 @@ def get_automobile():
     for automobile in content["autos"]:
         AutomobileVO.objects.update_or_create(
             vin=automobile["vin"],
-            sold=automobile["sold"]
+            defaults={"sold": automobile["sold"]}
         )
+
 
 def poll():
     while True:
