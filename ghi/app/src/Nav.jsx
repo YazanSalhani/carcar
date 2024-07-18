@@ -46,6 +46,21 @@ function Nav() {
               <li className="nav-item">
                 <NavLink to="/sales/history" className="nav-link" id="sales-history-link" aria-current="page">Sales History</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/technicians/create" className="nav-link" id="create-technicians-link" aria-current="page">Add a Technician</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/appointments/create" className="nav-link" id="create-appointments-link" aria-current="page">Add a Appointment</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/technicians" className="nav-link" id="technicians-list-link" aria-current="page">Technicians</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/appointments" className="nav-link" id="appointments-list-link" aria-current="page">Appointments</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/appointments/history" className="nav-link" id="appointments-history-link" aria-current="page">Appointments History</NavLink>
+              </li>
             </ul>
         </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
