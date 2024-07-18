@@ -12,8 +12,8 @@ class Salesperson(models.Model):
 class Customer(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    address = models.CharField(max_length=250, unique=True)
-    phone_number = models.CharField(max_length=25, unique=True)
+    address = models.CharField(max_length=250)
+    phone_number = models.CharField(max_length=25)
 
 class Sale(models.Model):
     price = models.PositiveIntegerField()
