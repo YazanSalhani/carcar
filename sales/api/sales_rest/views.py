@@ -23,10 +23,11 @@ def api_list_salespeople(request):
                 safe=False,
             )
         except:
-            return JsonResponse(
-                {"Message": "Invalid entry"},
-                status=400
+            response = JsonResponse(
+                {"message": "Could not create the salesperson"}
             )
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["GET", "DELETE"])
@@ -45,8 +46,15 @@ def api_show_salesperson(request, pk):
             return response
     else: # DELETE
         try:
-            count, _ =  Salesperson.objects.filter(id=pk).delete()
-            return JsonResponse({"Deleted": count > 0})
+            salesperson = Salesperson.objects.get(id=pk)
+            salesperson.delete()
+            return JsonResponse(
+                salesperson,
+                encoder=SalespersonEncoder,
+                safe=False,
+            )
+            # count, _ =  Salesperson.objects.filter(id=pk).delete()
+            # return JsonResponse({"Deleted": count > 0})
         except Salesperson.DoesNotExist:
             return JsonResponse({"Message": "Salesperson does not exist"})
 

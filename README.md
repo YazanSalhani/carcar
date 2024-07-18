@@ -26,7 +26,7 @@ Team:
 |-------------------------------|--------|-----------------------------------------------|
 | List all salespeople          | GET    | http://localhost:8090/api/salespeople/        |
 | Create a new salesperson      | POST   | http://localhost:8090/api/salespeople/        |
-| Delete a specific salesperson | DELETE | http://localhost:8090/api/salespeople/int:pk/ |
+| Delete a specific salesperson | DELETE | http://localhost:8090/api/salespeople/:id/    |
 
 ##### List all salespeople:
 
@@ -68,7 +68,7 @@ The body of the POST request should follow this structure, and the data returned
 
 ##### Delete a salesperson:
 
-Deletes a specific salesperson (as specified by the int:pk) from the database . The return value will be a dictionary containing a message of success or failure.
+Deletes a specific salesperson (as specified by the :id) from the database . The return value will be a dictionary containing a message of success or failure.
 
 If the salesperson was successfully deleted, the return will be:
 
@@ -87,7 +87,7 @@ If the salesperson was not successfully deleted, the return will be:
 |-------------------------------|--------|-----------------------------------------------|
 | List all customers            | GET    | http://localhost:8090/api/customers/          |
 | Create a new customer         | POST   | http://localhost:8090/api/customers/          |
-| Delete a specific customer    | DELETE | hhttp://localhost:8090/api/customers/int:pk/  |
+| Delete a specific customer    | DELETE | hhttp://localhost:8090/api/customers/:id/     |
 
 ##### List all customers:
 
@@ -131,7 +131,7 @@ The body of the POST request should follow this structure, and the data returned
 
 ##### Delete a customer:
 
-Deletes a specific customer (as specified by the int:pk) from the database. The return value will be a dictionary containing a message of success or failure.
+Deletes a specific customer (as specified by the :id) from the database. The return value will be a dictionary containing a message of success or failure.
 
 If the customer was successfully deleted, the return will be:
 
@@ -150,7 +150,7 @@ If the customer was not successfully deleted, the return will be:
 |-------------------------------|--------|-----------------------------------------------|
 | List all sales                | GET    | http://localhost:8090/api/sales/              |
 | Create a sale                 | POST   | http://localhost:8090/api/sales/              |
-| Delete a specific sale        | DELETE | hhttp://localhost:8090/api/sales/int:pk/      |
+| Delete a specific sale        | DELETE | hhttp://localhost:8090/api/sales/:id/         |
 
 ##### List all sales:
 
@@ -232,7 +232,7 @@ The data returned will also follow this structure:
 
 ##### Delete a sale:
 
-Deletes a specific sale (as specified by the int:pk) from the database. The return value will be a dictionary containing a message of success or failure.
+Deletes a specific sale (as specified by the :id) from the database. The return value will be a dictionary containing a message of success or failure.
 
 If the sale was successfully deleted, the return will be:
 
@@ -245,6 +245,45 @@ If the sale was not successfully deleted, the return will be:
 
 
 ### Services Microservice
+
+
+## URLs and Ports
+
+### React Browser: http://localhost:5173
+
+### Services Microservice
+
+#### Services microservice can be accessed from browser and third party API client on port 8080
+
+
+| Action                               | From Third Party API Client                        | In Browser                                  |
+|--------------------------------------|----------------------------------------------------|---------------------------------------------|
+| List all technicians                 | http://localhost:8080/api/technicians/             | http://localhost:5173/api/salespeople/      |
+| Create a new technician              | http://localhost:8080/api/technicians/             | http://localhost:5173/api/salespeople/      |
+| Delete a specific technician         | http://localhost:8080/api/technicians/:id/         | not configured                              |
+| List all appointments                | http://localhost:8080/api/appointments/            | http://localhost:5173/api/customers/        |
+| Create a new appointment             | http://localhost:8080/api/appointments/            | http://localhost:5173/api/customers/create/ |
+| Delete an appointment                | http://localhost:8080/api/appointments/:id/        | not configured                              |
+| Set appointment status to "canceled" | http://localhost:8080/api/appointments/:id/cancel/ | http://localhost:5173/api/sales/            |
+| Set appointment status to "finished" | http://localhost:8080/api/appointments/:id/finish/ | http://localhost:5173/api/sales/create/     |
+
+
+### Sales Microservice
+
+#### Sales microservice can be accessed from browser and third party API client on port 8090
+
+| Action                        | From Third Party API Client                | In Browser                                  |
+|-------------------------------|--------------------------------------------|---------------------------------------------|
+| List all salespeople          | http://localhost:8090/api/salespeople/     | http://localhost:5173/api/salespeople/      |
+| Create a new salesperson      | http://localhost:8090/api/salespeople/     | http://localhost:5173/api/salespeople/      |
+| Delete a specific salesperson | http://localhost:8090/api/salespeople/:id/ | not configured                              |
+| List all customers            | http://localhost:8090/api/customers/       | http://localhost:5173/api/customers/        |
+| Create a new customer         | http://localhost:8090/api/customers/       | http://localhost:5173/api/customers/create/ |
+| Delete a customer             | http://localhost:8090/api/customers/:id/   | not configured                              |
+| List all sales                | http://localhost:8090/api/sales/           | http://localhost:5173/api/sales/            |
+| Create a new sale             | http://localhost:8090/api/customers/       | http://localhost:5173/api/sales/create/     |
+| Delete a sale                 | http://localhost:8090/api/salespeople/:id/ | not configured                              |
+
 
 ## Service microservice
 
