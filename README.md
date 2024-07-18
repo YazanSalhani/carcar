@@ -38,16 +38,18 @@ Each salesperson will be an object containing four keys ("first_name", "last_nam
 
 E.g. (if there was only one salesperson in the database):
 
-{ <br>
-    "salespeople": [ <br>
-        { <br>
-            "first_name": string, <br>
-            "last_name": string, <br>
-            "employee_id": string, <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "salespeople": [
+        {
+            "first_name": string,
+            "last_name": string,
+            "employee_id": string,
+            "id": number
+        }
+    ]
+}
+```
 
 ##### Create a new salesperson:
 
@@ -57,21 +59,24 @@ Each salesperson will be an object containing four keys ("first_name", "last_nam
 
 The body of the POST request should follow this structure:
 
-
+```
 { <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-} <br>
+    "first_name": string,
+    "last_name": string,
+    "employee_id": string,
+}
+```
 
 The data returned will also follow the same structure, with the addition of the unique "id" of the salesperson:
 
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-    "id": number <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "employee_id": string,
+    "id": number
+}
+```
 
 
 ##### Delete a salesperson:
@@ -80,16 +85,20 @@ Deletes a specific salesperson (as specified by the :id) from the database . The
 
 If the salesperson was successfully deleted, the return will be in this format:
 
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-    "id": null <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "employee_id": string,
+    "id": null
+}
+```
 
 If the salesperson was not successfully deleted, the return will be:
 
+```
 {"Message": "Salesperson does not exist"}
+```
 
 
 
@@ -109,17 +118,19 @@ Each customer will be an object containing five keys ("first_name", "last_name",
 
 E.g. (if there was only one customer in the database):
 
-{<br>
-    "customers": [ <br>
-        { <br>
-            "first_name": string, <br>
-            "last_name": string, <br>
-            "address": string, <br>
-            "phone_number": string, <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "customers": [
+        {
+            "first_name": string,
+            "last_name": string,
+            "address": string,
+            "phone_number": string,
+            "id": number
+        }
+    ]
+}
+```
 
 ##### Create a new customer:
 
@@ -129,25 +140,27 @@ Each customer will be an object containing five keys ("first_name", "last_name",
 
 The body of the POST request should follow this structure, and the data returned will also follow this structure:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "address": string, <br>
-    "phone_number": string, <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "address": string,
+    "phone_number": string,
+}
+```
 
 
 The data returned will also follow this structure, with the addition of the unique "id" of the customer:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "address": string, <br>
-    "phone_number": string, <br>
-    "id": number <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "address": string,
+    "phone_number": string,
+    "id": number
+}
+```
 
 
 ##### Delete a customer:
@@ -156,20 +169,23 @@ Deletes a specific customer (as specified by the :id) from the database. The ret
 
 If the customer was successfully deleted, the return will follow this format:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "address": string, <br>
-    "phone_number": string, <br>
-    "id": null <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "address": string,
+    "phone_number": string,
+    "id": null
+}
+```
 
 
 
 If the customer was not successfully deleted, the return will be:
 
+```
 {"Message": "Customer does not exist"}
+```
 
 
 
@@ -192,29 +208,31 @@ The "automobile", "salesperson", and "customer" properties are foreign keys to t
 
 E.g. (if there was only one sale in the database):
 
-{<br>
-    "sales": [ <br>
-        "price": number,<br>
-        "automobile": {<br>
-            "vin": string,<br>
-            "sold": boolean<br>
+```
+{
+    "sales": [
+        "price": number,
+        "automobile": {
+            "vin": string,
+            "sold": boolean
         },<br>
-        "salesperson": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "employee_id": string,<br>
-            "id": number<br>
-        },<br>
-        "customer": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "address": string,<br>
-            "phone_number": string,<br>
-            "id": number<br>
-        },<br>
-        "id": number<br>
-    ]<br>
-},<br>
+        "salesperson": {
+            "first_name": string,
+            "last_name": string,
+            "employee_id": string,
+            "id": number
+        },
+        "customer": {
+            "first_name": string,
+            "last_name": string,
+            "address": string,
+            "phone_number": string,
+            "id": number
+        },
+        "id": number
+    ]
+}
+```
 
 ##### Create a new sale:
 
@@ -226,39 +244,43 @@ The "automobile", "salesperson", and "customer" properties are foreign keys to t
 
 The body of the POST request should follow this structure, with the automobile string containing the unique "vin" for the associated automobile, and the numbers for salesperson and customer being the ids of the associated salesperson and customer (respectively):
 
-{<br>
-	"automobile": string, <br>
-	"salesperson": number, <br>
-	"customer": number, <br>
-	"price": number <br>
-}<br>
+```
+{
+	"automobile": string,
+	"salesperson": number,
+	"customer": number,
+	"price": number
+}
+```
 
 
 The data returned will follow this structure:
 
-{<br>
-    "sales": [ <br>
-        "price": number,<br>
-        "automobile": {<br>
-            "vin": string,<br>
-            "sold": boolean<br>
-        },<br>
-        "salesperson": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "employee_id": string,<br>
-            "id": number<br>
-        },<br>
-        "customer": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "address": string,<br>
-            "phone_number": string,<br>
-            "id": number<br>
-        },<br>
-        "id": number<br>
-    ]<br>
-},<br>
+```
+{
+    "sales": [
+        "price": number,
+        "automobile": {
+            "vin": string,
+            "sold": boolean
+        },
+        "salesperson": {
+            "first_name": string,
+            "last_name": string,
+            "employee_id": string,
+            "id": number
+        },
+        "customer": {
+            "first_name": string,
+            "last_name": string,
+            "address": string,
+            "phone_number": string,
+            "id": number
+        },
+        "id": number
+    ]
+}
+```
 
 ##### Delete a sale:
 
@@ -266,36 +288,39 @@ Deletes a specific sale (as specified by the :id) from the database. The return 
 
 If the sale was successfully deleted, the return will following this formant:
 
-{<br>
-	"price": number, <br>
-	"automobile": { <br>
-		"vin": string, <br>
-		"sold": boolean <br>
-	}, <br>
-	"salesperson": { <br>
-		"first_name": string, <br>
-		"last_name": string, <br>
-		"employee_id": string, <br>
-		"id": number <br>
-	}, <br>
-	"customer": { <br>
-		"first_name": string, <br>
-		"last_name": string, <br>
-		"address": string, <br>
-		"phone_number": string, <br>
-		"id": number <br>
-	}, <br>
-	"id": null <br>
-} <br>
+```
+{
+	"price": number,
+	"automobile": {
+		"vin": string,
+		"sold": boolean
+	},
+	"salesperson": {
+		"first_name": string,
+		"last_name": string,
+		"employee_id": string,
+		"id": number
+	},
+	"customer": {
+		"first_name": string,
+		"last_name": string,
+		"address": string,
+		"phone_number": string,
+		"id": number
+	},
+	"id": null
+}
+```
 
 If the salesperson was not successfully deleted, the return will be one of the following (depending on the error):
 
+```
 {"Message": "Invalid automobile."}
 
 {"Message": "Invalid salesperson."}
 
 {"Message": "Invalid customer."}
-
+```
 
 
 ### Services Microservice
@@ -316,16 +341,18 @@ Each technician will be an object containing four keys ("first_name", "last_name
 
 E.g. (if there was only one technician in the database):
 
-{ <br>
-    "technicians": [ <br>
-        { <br>
-            "first_name": string, <br>
-            "last_name": string, <br>
-            "employee_id": string, <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "technicians": [
+        {
+            "first_name": string,
+            "last_name": string,
+            "employee_id": string,
+            "id": number
+        }
+    ]
+}
+```
 
 ##### Create a new technician:
 
@@ -335,21 +362,24 @@ Each technician will be an object containing four keys ("first_name", "last_name
 
 The body of the POST request should follow this structure:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "employee_id": string,
+}
+```
 
 The data returned will also follow this structure, with the addition of the "id" property:
 
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-    "id": number <br>
-} <br>
+```
+{
+    "first_name": string,
+    "last_name": string,
+    "employee_id": string,
+    "id": number
+}
+```
 
 
 
@@ -359,12 +389,15 @@ Deletes a specific technician (as specified by the :id) from the database. The r
 
 If the technician was successfully deleted, the return will be:
 
+```
 {"message": "Technician was deleted"}
+```
 
-if the technician was not successfully deleted, the return will be:
+If the technician was not successfully deleted, the return will be:
 
+```
 {"message": "Does not exist"}
-
+```
 
 
 
@@ -386,25 +419,27 @@ Each appointment will be an object containing 8 keys ("date_time", "reason", "st
 
 E.g. (if there was only one appointment in the database):
 
-{<br>
-    "appointments": [ <br>
-        { <br>
-            "date_time": string, <br>
-            "reason": string, <br>
-            "status": string, <br>
-            "vin": string, <br>
-            "vip": boolean, <br>
-            "customer": string, <br>
-            "technician': { <br>
-                "first_name": string, <br>
-                "last_name": string, <br>
-                "employee_id": string, <br>
-                "id": number <br>
-            } <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "appointments": [
+        {
+            "date_time": string,
+            "reason": string,
+            "status": string,
+            "vin": string,
+            "vip": boolean,
+            "customer": string,
+            "technician': {
+                "first_name": string,
+                "last_name": string,
+                "employee_id": string,
+                "id": number
+            }
+            "id": number
+        }
+    ]
+}
+```
 
 ##### Create a new appointment:
 
@@ -414,31 +449,35 @@ Each appointment will be an object containing eight keys ("date_time", "reason",
 
 The body of the POST request should follow this structure, with the technican input being the "id" of the associated technician:
 
-{ <br>
-    "date_time": string, <br>
-    "reason": string, <br>
-    "vin": string, <br>
-    "customer": string, <br>
-    "technician": number <br>
-} <br>
+```
+{
+    "date_time": string,
+    "reason": string,
+    "vin": string,
+    "customer": string,
+    "technician": number
+}
+```
 
 The data returned will follow this structure:
 
-{ <br>
-    "date_time": string, <br>
-    "reason": string, <br>
-    "status": string, <br>
-    "vin": string, <br>
-    "vip": boolean, <br>
-    "customer": string, <br>
-    "technician': { <br>
-        "first_name": string, <br>
-        "last_name": string, <br>
-        "employee_id": string, <br>
-        "id": number <br>
-    } <br>
-    "id": number <br>
-} <br>
+```
+{
+    "date_time": string,
+    "reason": string,
+    "status": string,
+    "vin": string,
+    "vip": boolean,
+    "customer": string,
+    "technician': {
+        "first_name": string,
+        "last_name": string,
+        "employee_id": string,
+        "id": number
+    }
+    "id": number
+}
+```
 
 ##### Delete an appointment:
 
@@ -446,12 +485,15 @@ Deletes a specific appointment (as specified by the :id) from the database. The 
 
 If the appointment was successfully deleted, the return will follow this format:
 
+```
 {"message": "Appointment was deleted"}
+```
 
 If the appointment was not successfully deleted, the return will be:
 
+```
 {"message": "Does not exist"}
-
+```
 
 ##### Set appointment status to cancelled:
 
