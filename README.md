@@ -7,7 +7,7 @@ Team:
 
 ## How to Run this App
 
-1. For and clone this repository to local computer
+1. Fork and clone this repository to local computer
 2. Run the following commands in your terminal, in the project directory:
     - docker volume create beta-data
     - docker-compose build
