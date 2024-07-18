@@ -36,18 +36,17 @@ Returns a dictionary with one key ("salespeople"), whose value is a list of all 
 
 Each salesperson will be an object containing four keys ("first_name", "last_name", "employee_id", and "id"), with the "employee_id" and "id" values being unique to each salesperson.
 
-E.g. (if there was only one salesperson in the database):
-
 ```
 {
     "salespeople": [
-        {
-            "first_name": string,
-            "last_name": string,
-            "employee_id": string,
-            "id": number
-        }
-    ]
+            {
+            "first_name": the salesperson's first name (string),
+            "last_name": the salesperson's last name (string),
+            "employee_id": the salesperson's employee id: first initial and last name (string),
+            "id": database id for the salesperson (number),
+            },
+            ...
+        ]
 }
 ```
 
@@ -60,10 +59,10 @@ Each salesperson will be an object containing four keys ("first_name", "last_nam
 The body of the POST request should follow this structure:
 
 ```
-{ <br>
-    "first_name": string,
-    "last_name": string,
-    "employee_id": string,
+{
+    "first_name": the salesperson's first name (string),
+    "last_name": the salesperson's last name (string),
+    "employee_id": first initial and last name of the salesperson (string),
 }
 ```
 
@@ -71,10 +70,10 @@ The data returned will also follow the same structure, with the addition of the 
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "employee_id": string,
-    "id": number
+    "first_name": the salesperson's first name (string),
+    "last_name": the salesperson's last name (string),
+    "employee_id": first initial and last name of the salesperson (string),
+    "id": database id for the salesperson (number)
 }
 ```
 
@@ -87,9 +86,9 @@ If the salesperson was successfully deleted, the return will be in this format:
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "employee_id": string,
+    "first_name": the salesperson's first name (string),
+    "last_name": the salesperson's last name (string),
+    "employee_id": first initial and last name of the salesperson (string),
     "id": null
 }
 ```
@@ -116,19 +115,18 @@ Returns a dictionary with one key ("customers"), whose value is a list of all cu
 
 Each customer will be an object containing five keys ("first_name", "last_name", "address", "phone_number", and "id"). The "id" value will be unique to each customer.
 
-E.g. (if there was only one customer in the database):
-
 ```
 {
     "customers": [
-        {
-            "first_name": string,
-            "last_name": string,
-            "address": string,
-            "phone_number": string,
-            "id": number
-        }
-    ]
+            {
+            "first_name": the customer's first name (string),
+            "last_name": the customer's last name (string),
+            "address": the customer's address (string),
+            "phone_number": the customer's phone number (string)
+            "id": database id for the customer (number),
+            },
+            ...
+        ]
 }
 ```
 
@@ -142,10 +140,10 @@ The body of the POST request should follow this structure, and the data returned
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "address": string,
-    "phone_number": string,
+    "first_name": the customer's first name (string),
+    "last_name": the customer's last name (string),
+    "address": the customer's address (string),
+    "phone_number": the customer's phone number (string)
 }
 ```
 
@@ -154,11 +152,11 @@ The data returned will also follow this structure, with the addition of the uniq
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "address": string,
-    "phone_number": string,
-    "id": number
+    "first_name": the customer's first name (string),
+    "last_name": the scustomer's last name (string),
+    "address": the customer's address (string),
+    "phone_number": the customer's phone number (string),
+    "id": the database id for the customer (number)
 }
 ```
 
@@ -171,10 +169,10 @@ If the customer was successfully deleted, the return will follow this format:
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "address": string,
-    "phone_number": string,
+    "first_name": the customer's first name (string),
+    "last_name": the scustomer's last name (string),
+    "address": the customer's address (string),
+    "phone_number": the customer's phone number (string),
     "id": null
 }
 ```
@@ -206,30 +204,31 @@ Each sale will be an object containing five keys ("price", "automobile", "salesp
 
 The "automobile", "salesperson", and "customer" properties are foreign keys to their respective models, and the data will return the associated object of each for the specific sale.
 
-E.g. (if there was only one sale in the database):
-
 ```
 {
     "sales": [
-        "price": number,
-        "automobile": {
-            "vin": string,
-            "sold": boolean
-        },<br>
-        "salesperson": {
-            "first_name": string,
-            "last_name": string,
-            "employee_id": string,
-            "id": number
+        {
+            "price": the price of the sale (number),
+            "automobile": {
+                "vin": the vin number for the automobile (string),
+                "sold": if the automobile is sold or not (boolean)
+            },
+            "salesperson": {
+                "first_name": the salesperson's first name (string),
+                "last_name": the salesperson's last name (string),
+                "employee_id": first initial and last name of the salesperson (string),
+                "id": database id for the salesperson (number)
+            },
+            "customer": {
+                "first_name": the customer's first name (string),
+                "last_name": the scustomer's last name (string),
+                "address": the customer's address (string),
+                "phone_number": the customer's phone number (string),
+                "id": the database id for the customer (number)
+            },
+            "id": the database id for the sale (number)
         },
-        "customer": {
-            "first_name": string,
-            "last_name": string,
-            "address": string,
-            "phone_number": string,
-            "id": number
-        },
-        "id": number
+        ...
     ]
 }
 ```
@@ -246,10 +245,10 @@ The body of the POST request should follow this structure, with the automobile s
 
 ```
 {
-	"automobile": string,
-	"salesperson": number,
-	"customer": number,
-	"price": number
+    "automobile": the vin for the associated automobile (string),
+    "salesperson": the database id for the associated salesperson (number),
+    "customer": the database id for the associated customer (number),
+    "price": the price of the car (number)
 }
 ```
 
@@ -257,28 +256,26 @@ The body of the POST request should follow this structure, with the automobile s
 The data returned will follow this structure:
 
 ```
-{
-    "sales": [
-        "price": number,
-        "automobile": {
-            "vin": string,
-            "sold": boolean
-        },
-        "salesperson": {
-            "first_name": string,
-            "last_name": string,
-            "employee_id": string,
-            "id": number
-        },
-        "customer": {
-            "first_name": string,
-            "last_name": string,
-            "address": string,
-            "phone_number": string,
-            "id": number
-        },
-        "id": number
-    ]
+    {
+    "price": the price of the sale (number),
+    "automobile": {
+        "vin": the vin number for the automobile (string),
+        "sold": if the automobile is sold or not (boolean)
+    },
+    "salesperson": {
+        "first_name": the salesperson's first name (string),
+        "last_name": the salesperson's last name (string),
+        "employee_id": first initial and last name of the salesperson (string),
+        "id": database id for the salesperson (number)
+    },
+    "customer": {
+        "first_name": the customer's first name (string),
+        "last_name": the scustomer's last name (string),
+        "address": the customer's address (string),
+        "phone_number": the customer's phone number (string),
+        "id": the database id for the customer (number)
+    },
+    "id": the database id for the sale (number)
 }
 ```
 
@@ -290,25 +287,25 @@ If the sale was successfully deleted, the return will following this formant:
 
 ```
 {
-	"price": number,
-	"automobile": {
-		"vin": string,
-		"sold": boolean
-	},
-	"salesperson": {
-		"first_name": string,
-		"last_name": string,
-		"employee_id": string,
-		"id": number
-	},
-	"customer": {
-		"first_name": string,
-		"last_name": string,
-		"address": string,
-		"phone_number": string,
-		"id": number
-	},
-	"id": null
+    "price": the price of the sale (number),
+    "automobile": {
+        "vin": the vin number for the automobile (string),
+        "sold": if the automobile is sold or not (boolean)
+    },
+    "salesperson": {
+        "first_name": the salesperson's first name (string),
+        "last_name": the salesperson's last name (string),
+        "employee_id": first initial and last name of the salesperson (string),
+        "id": database id for the salesperson (number)
+    },
+    "customer": {
+        "first_name": the customer's first name (string),
+        "last_name": the scustomer's last name (string),
+        "address": the customer's address (string),
+        "phone_number": the customer's phone number (string),
+        "id": the database id for the customer (number)
+    },
+    "id": null
 }
 ```
 
@@ -339,17 +336,16 @@ Returns a dictionary with one key ("technicians"), whose value is a list of all 
 
 Each technician will be an object containing four keys ("first_name", "last_name", "employee_id", and "id"), with the "employee_id" and "id" values being unique.
 
-E.g. (if there was only one technician in the database):
-
 ```
 {
     "technicians": [
         {
-            "first_name": string,
-            "last_name": string,
-            "employee_id": string,
-            "id": number
-        }
+            "first_name": the first name of the technician (string),
+            "last_name": the last name of the technician (string),
+            "employee_id": first initial and last name of the technician (string),
+            "id": the database id for the technician (number)
+        },
+        ...
     ]
 }
 ```
@@ -364,9 +360,9 @@ The body of the POST request should follow this structure:
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "employee_id": string,
+    "first_name": the first name of the technician (string),
+    "last_name": the last name of the technician (string),
+    "employee_id": first initial and last name of the technician (string)
 }
 ```
 
@@ -374,10 +370,10 @@ The data returned will also follow this structure, with the addition of the "id"
 
 ```
 {
-    "first_name": string,
-    "last_name": string,
-    "employee_id": string,
-    "id": number
+    "first_name": the first name of the technician (string),
+    "last_name": the last name of the technician (string),
+    "employee_id": first initial and last name of the technician (string),
+    "id": the database id for the technician (number)
 }
 ```
 
@@ -417,26 +413,26 @@ Returns a dictionary with one key ("appointments"), whose value is a list of all
 
 Each appointment will be an object containing 8 keys ("date_time", "reason", "status", "vin", "vip", "customer", "technician", and "id"). The "id" value will be unique to each appointment.
 
-E.g. (if there was only one appointment in the database):
 
 ```
 {
     "appointments": [
         {
-            "date_time": string,
-            "reason": string,
-            "status": string,
-            "vin": string,
-            "vip": boolean,
-            "customer": string,
+            "date_time": the date and time of the appointment (string),
+            "reason": reason for appointment (string),
+            "status": status of the appointment: created, cancelled, or finished (string),
+            "vin": the vin of the automobile for the appointment (string),
+            "vip": if the appointment / customer is a vip (boolean),
+            "customer": the customer for the appointment (string),
             "technician': {
-                "first_name": string,
-                "last_name": string,
-                "employee_id": string,
-                "id": number
+                "first_name": first name of the technician (string),
+                "last_name": last name of the technician (string),
+                "employee_id": first initial and last name of the technician (string),
+                "id": the database id for the technician resource (number)
             }
-            "id": number
-        }
+            "id": the database id for the appointment (number)
+        },
+        ...
     ]
 }
 ```
@@ -451,11 +447,13 @@ The body of the POST request should follow this structure, with the technican in
 
 ```
 {
-    "date_time": string,
-    "reason": string,
-    "vin": string,
-    "customer": string,
-    "technician": number
+    "date_time": the date and time of the appointment (string),
+    "reason": reason for appointment (string),
+    "status": status of the appointment: created, cancelled, or finished (string),
+    "vin": the vin of the automobile for the appointment (string),
+    "vip": if the appointment / customer is a vip (boolean),
+    "customer": the customer for the appointment (string),
+    "technician": the database id for the technician resource (number)
 }
 ```
 
@@ -463,19 +461,19 @@ The data returned will follow this structure:
 
 ```
 {
-    "date_time": string,
-    "reason": string,
-    "status": string,
-    "vin": string,
-    "vip": boolean,
-    "customer": string,
+    "date_time": the date and time of the appointment (string),
+    "reason": reason for appointment (string),
+    "status": status of the appointment: created, cancelled, or finished (string),
+    "vin": the vin of the automobile for the appointment (string),
+    "vip": if the appointment / customer is a vip (boolean),
+    "customer": the customer for the appointment (string),
     "technician': {
-        "first_name": string,
-        "last_name": string,
-        "employee_id": string,
-        "id": number
+        "first_name": first name of the technician (string),
+        "last_name": last name of the technician (string),
+        "employee_id": first initial and last name of the technician (string),
+        "id": the database id for the technician resource (number)
     }
-    "id": number
+    "id": the database id for the appointment (number)
 }
 ```
 
