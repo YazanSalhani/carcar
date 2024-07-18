@@ -36,18 +36,19 @@ Returns a dictionary with one key ("salespeople"), whose value is a list of all 
 
 Each salesperson will be an object containing four keys ("first_name", "last_name", "employee_id", and "id"), with the "employee_id" and "id" values being unique to each salesperson.
 
-E.g. (if there was only one salesperson in the database):
-
-{ <br>
-    "salespeople": [ <br>
-        { <br>
-            "first_name": string, <br>
-            "last_name": string, <br>
-            "employee_id": string, <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "salespeople": [
+            {
+            "first_name": the salesperson's first name (string),
+            "last_name": the salesperson's last name (string),
+            "employee_id": the salesperson's employee id: first initial and last name (string),
+            "id": database id for the salesperson (number),
+            },
+            ...
+        ]
+}
+```
 
 ##### Create a new salesperson:
 
@@ -57,21 +58,24 @@ Each salesperson will be an object containing four keys ("first_name", "last_nam
 
 The body of the POST request should follow this structure:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-} <br>
+```
+{
+    "first_name": the salesperson's first name (string),
+    "last_name": the salesperson's last name (string),
+    "employee_id": first initial and last name of the salesperson (string),
+}
+```
 
 The data returned will also follow the same structure, with the addition of the unique "id" of the salesperson:
 
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-    "id": number <br>
-} <br>
+```
+{
+    "first_name": the salesperson's first name (string),
+    "last_name": the salesperson's last name (string),
+    "employee_id": first initial and last name of the salesperson (string),
+    "id": database id for the salesperson (number)
+}
+```
 
 
 ##### Delete a salesperson:
@@ -80,16 +84,20 @@ Deletes a specific salesperson (as specified by the :id) from the database . The
 
 If the salesperson was successfully deleted, the return will be in this format:
 
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-    "id": null <br>
-} <br>
+```
+{
+    "first_name": the salesperson's first name (string),
+    "last_name": the salesperson's last name (string),
+    "employee_id": first initial and last name of the salesperson (string),
+    "id": null
+}
+```
 
 If the salesperson was not successfully deleted, the return will be:
 
+```
 {"Message": "Salesperson does not exist"}
+```
 
 
 
@@ -107,19 +115,20 @@ Returns a dictionary with one key ("customers"), whose value is a list of all cu
 
 Each customer will be an object containing five keys ("first_name", "last_name", "address", "phone_number", and "id"). The "id" value will be unique to each customer.
 
-E.g. (if there was only one customer in the database):
-
-{<br>
-    "customers": [ <br>
-        { <br>
-            "first_name": string, <br>
-            "last_name": string, <br>
-            "address": string, <br>
-            "phone_number": string, <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "customers": [
+            {
+            "first_name": the customer's first name (string),
+            "last_name": the customer's last name (string),
+            "address": the customer's address (string),
+            "phone_number": the customer's phone number (string)
+            "id": database id for the customer (number),
+            },
+            ...
+        ]
+}
+```
 
 ##### Create a new customer:
 
@@ -129,25 +138,27 @@ Each customer will be an object containing five keys ("first_name", "last_name",
 
 The body of the POST request should follow this structure, and the data returned will also follow this structure:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "address": string, <br>
-    "phone_number": string, <br>
-} <br>
+```
+{
+    "first_name": the customer's first name (string),
+    "last_name": the customer's last name (string),
+    "address": the customer's address (string),
+    "phone_number": the customer's phone number (string)
+}
+```
 
 
 The data returned will also follow this structure, with the addition of the unique "id" of the customer:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "address": string, <br>
-    "phone_number": string, <br>
-    "id": number <br>
-} <br>
+```
+{
+    "first_name": the customer's first name (string),
+    "last_name": the scustomer's last name (string),
+    "address": the customer's address (string),
+    "phone_number": the customer's phone number (string),
+    "id": the database id for the customer (number)
+}
+```
 
 
 ##### Delete a customer:
@@ -156,20 +167,23 @@ Deletes a specific customer (as specified by the :id) from the database. The ret
 
 If the customer was successfully deleted, the return will follow this format:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "address": string, <br>
-    "phone_number": string, <br>
-    "id": null <br>
-} <br>
+```
+{
+    "first_name": the customer's first name (string),
+    "last_name": the scustomer's last name (string),
+    "address": the customer's address (string),
+    "phone_number": the customer's phone number (string),
+    "id": null
+}
+```
 
 
 
 If the customer was not successfully deleted, the return will be:
 
+```
 {"Message": "Customer does not exist"}
+```
 
 
 
@@ -190,31 +204,34 @@ Each sale will be an object containing five keys ("price", "automobile", "salesp
 
 The "automobile", "salesperson", and "customer" properties are foreign keys to their respective models, and the data will return the associated object of each for the specific sale.
 
-E.g. (if there was only one sale in the database):
-
-{<br>
-    "sales": [ <br>
-        "price": number,<br>
-        "automobile": {<br>
-            "vin": string,<br>
-            "sold": boolean<br>
-        },<br>
-        "salesperson": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "employee_id": string,<br>
-            "id": number<br>
-        },<br>
-        "customer": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "address": string,<br>
-            "phone_number": string,<br>
-            "id": number<br>
-        },<br>
-        "id": number<br>
-    ]<br>
-},<br>
+```
+{
+    "sales": [
+        {
+            "price": the price of the sale (number),
+            "automobile": {
+                "vin": the vin number for the automobile (string),
+                "sold": if the automobile is sold or not (boolean)
+            },
+            "salesperson": {
+                "first_name": the salesperson's first name (string),
+                "last_name": the salesperson's last name (string),
+                "employee_id": first initial and last name of the salesperson (string),
+                "id": database id for the salesperson (number)
+            },
+            "customer": {
+                "first_name": the customer's first name (string),
+                "last_name": the scustomer's last name (string),
+                "address": the customer's address (string),
+                "phone_number": the customer's phone number (string),
+                "id": the database id for the customer (number)
+            },
+            "id": the database id for the sale (number)
+        },
+        ...
+    ]
+}
+```
 
 ##### Create a new sale:
 
@@ -226,39 +243,41 @@ The "automobile", "salesperson", and "customer" properties are foreign keys to t
 
 The body of the POST request should follow this structure, with the automobile string containing the unique "vin" for the associated automobile, and the numbers for salesperson and customer being the ids of the associated salesperson and customer (respectively):
 
-{<br>
-	"automobile": string, <br>
-	"salesperson": number, <br>
-	"customer": number, <br>
-	"price": number <br>
-}<br>
+```
+{
+    "automobile": the vin for the associated automobile (string),
+    "salesperson": the database id for the associated salesperson (number),
+    "customer": the database id for the associated customer (number),
+    "price": the price of the car (number)
+}
+```
 
 
 The data returned will follow this structure:
 
-{<br>
-    "sales": [ <br>
-        "price": number,<br>
-        "automobile": {<br>
-            "vin": string,<br>
-            "sold": boolean<br>
-        },<br>
-        "salesperson": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "employee_id": string,<br>
-            "id": number<br>
-        },<br>
-        "customer": {<br>
-            "first_name": string,<br>
-            "last_name": string,<br>
-            "address": string,<br>
-            "phone_number": string,<br>
-            "id": number<br>
-        },<br>
-        "id": number<br>
-    ]<br>
-},<br>
+```
+    {
+    "price": the price of the sale (number),
+    "automobile": {
+        "vin": the vin number for the automobile (string),
+        "sold": if the automobile is sold or not (boolean)
+    },
+    "salesperson": {
+        "first_name": the salesperson's first name (string),
+        "last_name": the salesperson's last name (string),
+        "employee_id": first initial and last name of the salesperson (string),
+        "id": database id for the salesperson (number)
+    },
+    "customer": {
+        "first_name": the customer's first name (string),
+        "last_name": the scustomer's last name (string),
+        "address": the customer's address (string),
+        "phone_number": the customer's phone number (string),
+        "id": the database id for the customer (number)
+    },
+    "id": the database id for the sale (number)
+}
+```
 
 ##### Delete a sale:
 
@@ -266,36 +285,39 @@ Deletes a specific sale (as specified by the :id) from the database. The return 
 
 If the sale was successfully deleted, the return will following this formant:
 
-{<br>
-	"price": number, <br>
-	"automobile": { <br>
-		"vin": string, <br>
-		"sold": boolean <br>
-	}, <br>
-	"salesperson": { <br>
-		"first_name": string, <br>
-		"last_name": string, <br>
-		"employee_id": string, <br>
-		"id": number <br>
-	}, <br>
-	"customer": { <br>
-		"first_name": string, <br>
-		"last_name": string, <br>
-		"address": string, <br>
-		"phone_number": string, <br>
-		"id": number <br>
-	}, <br>
-	"id": null <br>
-} <br>
+```
+{
+    "price": the price of the sale (number),
+    "automobile": {
+        "vin": the vin number for the automobile (string),
+        "sold": if the automobile is sold or not (boolean)
+    },
+    "salesperson": {
+        "first_name": the salesperson's first name (string),
+        "last_name": the salesperson's last name (string),
+        "employee_id": first initial and last name of the salesperson (string),
+        "id": database id for the salesperson (number)
+    },
+    "customer": {
+        "first_name": the customer's first name (string),
+        "last_name": the scustomer's last name (string),
+        "address": the customer's address (string),
+        "phone_number": the customer's phone number (string),
+        "id": the database id for the customer (number)
+    },
+    "id": null
+}
+```
 
 If the salesperson was not successfully deleted, the return will be one of the following (depending on the error):
 
+```
 {"Message": "Invalid automobile."}
 
 {"Message": "Invalid salesperson."}
 
 {"Message": "Invalid customer."}
-
+```
 
 
 ### Services Microservice
@@ -314,18 +336,19 @@ Returns a dictionary with one key ("technicians"), whose value is a list of all 
 
 Each technician will be an object containing four keys ("first_name", "last_name", "employee_id", and "id"), with the "employee_id" and "id" values being unique.
 
-E.g. (if there was only one technician in the database):
-
-{ <br>
-    "technicians": [ <br>
-        { <br>
-            "first_name": string, <br>
-            "last_name": string, <br>
-            "employee_id": string, <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "technicians": [
+        {
+            "first_name": the first name of the technician (string),
+            "last_name": the last name of the technician (string),
+            "employee_id": first initial and last name of the technician (string),
+            "id": the database id for the technician (number)
+        },
+        ...
+    ]
+}
+```
 
 ##### Create a new technician:
 
@@ -335,21 +358,24 @@ Each technician will be an object containing four keys ("first_name", "last_name
 
 The body of the POST request should follow this structure:
 
-
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-} <br>
+```
+{
+    "first_name": the first name of the technician (string),
+    "last_name": the last name of the technician (string),
+    "employee_id": first initial and last name of the technician (string)
+}
+```
 
 The data returned will also follow this structure, with the addition of the "id" property:
 
-{ <br>
-    "first_name": string, <br>
-    "last_name": string, <br>
-    "employee_id": string, <br>
-    "id": number <br>
-} <br>
+```
+{
+    "first_name": the first name of the technician (string),
+    "last_name": the last name of the technician (string),
+    "employee_id": first initial and last name of the technician (string),
+    "id": the database id for the technician (number)
+}
+```
 
 
 
@@ -359,12 +385,15 @@ Deletes a specific technician (as specified by the :id) from the database. The r
 
 If the technician was successfully deleted, the return will be:
 
+```
 {"message": "Technician was deleted"}
+```
 
-if the technician was not successfully deleted, the return will be:
+If the technician was not successfully deleted, the return will be:
 
+```
 {"message": "Does not exist"}
-
+```
 
 
 
@@ -384,27 +413,29 @@ Returns a dictionary with one key ("appointments"), whose value is a list of all
 
 Each appointment will be an object containing 8 keys ("date_time", "reason", "status", "vin", "vip", "customer", "technician", and "id"). The "id" value will be unique to each appointment.
 
-E.g. (if there was only one appointment in the database):
 
-{<br>
-    "appointments": [ <br>
-        { <br>
-            "date_time": string, <br>
-            "reason": string, <br>
-            "status": string, <br>
-            "vin": string, <br>
-            "vip": boolean, <br>
-            "customer": string, <br>
-            "technician': { <br>
-                "first_name": string, <br>
-                "last_name": string, <br>
-                "employee_id": string, <br>
-                "id": number <br>
-            } <br>
-            "id": number <br>
-        } <br>
-    ] <br>
-} <br>
+```
+{
+    "appointments": [
+        {
+            "date_time": the date and time of the appointment (string),
+            "reason": reason for appointment (string),
+            "status": status of the appointment: created, cancelled, or finished (string),
+            "vin": the vin of the automobile for the appointment (string),
+            "vip": if the appointment / customer is a vip (boolean),
+            "customer": the customer for the appointment (string),
+            "technician': {
+                "first_name": first name of the technician (string),
+                "last_name": last name of the technician (string),
+                "employee_id": first initial and last name of the technician (string),
+                "id": the database id for the technician resource (number)
+            }
+            "id": the database id for the appointment (number)
+        },
+        ...
+    ]
+}
+```
 
 ##### Create a new appointment:
 
@@ -414,31 +445,37 @@ Each appointment will be an object containing eight keys ("date_time", "reason",
 
 The body of the POST request should follow this structure, with the technican input being the "id" of the associated technician:
 
-{ <br>
-    "date_time": string, <br>
-    "reason": string, <br>
-    "vin": string, <br>
-    "customer": string, <br>
-    "technician": number <br>
-} <br>
+```
+{
+    "date_time": the date and time of the appointment (string),
+    "reason": reason for appointment (string),
+    "status": status of the appointment: created, cancelled, or finished (string),
+    "vin": the vin of the automobile for the appointment (string),
+    "vip": if the appointment / customer is a vip (boolean),
+    "customer": the customer for the appointment (string),
+    "technician": the database id for the technician resource (number)
+}
+```
 
 The data returned will follow this structure:
 
-{ <br>
-    "date_time": string, <br>
-    "reason": string, <br>
-    "status": string, <br>
-    "vin": string, <br>
-    "vip": boolean, <br>
-    "customer": string, <br>
-    "technician': { <br>
-        "first_name": string, <br>
-        "last_name": string, <br>
-        "employee_id": string, <br>
-        "id": number <br>
-    } <br>
-    "id": number <br>
-} <br>
+```
+{
+    "date_time": the date and time of the appointment (string),
+    "reason": reason for appointment (string),
+    "status": status of the appointment: created, cancelled, or finished (string),
+    "vin": the vin of the automobile for the appointment (string),
+    "vip": if the appointment / customer is a vip (boolean),
+    "customer": the customer for the appointment (string),
+    "technician': {
+        "first_name": first name of the technician (string),
+        "last_name": last name of the technician (string),
+        "employee_id": first initial and last name of the technician (string),
+        "id": the database id for the technician resource (number)
+    }
+    "id": the database id for the appointment (number)
+}
+```
 
 ##### Delete an appointment:
 
@@ -446,12 +483,15 @@ Deletes a specific appointment (as specified by the :id) from the database. The 
 
 If the appointment was successfully deleted, the return will follow this format:
 
+```
 {"message": "Appointment was deleted"}
+```
 
 If the appointment was not successfully deleted, the return will be:
 
+```
 {"message": "Does not exist"}
-
+```
 
 ##### Set appointment status to cancelled:
 
