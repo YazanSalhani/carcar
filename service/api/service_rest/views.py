@@ -52,7 +52,10 @@ def api_technician(request, pk):
             technician.delete()
             return JsonResponse({"message": "Technician was deleted"})
         except Technician.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"})
+            return JsonResponse(
+                {"message": "Does not exist"},
+                status=400,
+                )
 
 
 @require_http_methods(["GET", "POST"])
@@ -105,7 +108,10 @@ def api_appointment(request,pk):
             appointment.delete()
             return JsonResponse({"message": "Appointment was deleted"})
         except Appointments.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"})
+            return JsonResponse(
+                {"message": "Does not exist"},
+                status=404
+                )
     else:
         try:
             content = json.loads(request.body)
@@ -122,4 +128,7 @@ def api_appointment(request,pk):
                 return JsonResponse({"message": "Status field is required"}, status=400)
 
         except Appointments.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"}, status=404)
+            return JsonResponse(
+                {"message": "Does not exist"},
+                status=404
+                )
