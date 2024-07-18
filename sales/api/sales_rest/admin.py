@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import AutomobileVO, Salesperson, Customer, Sale
 
+
 @admin.register(AutomobileVO)
 class AutomobileVOAdmin(admin.ModelAdmin):
     list_display = [
@@ -8,6 +9,7 @@ class AutomobileVOAdmin(admin.ModelAdmin):
         "sold",
         "id",
     ]
+
 
 @admin.register(Salesperson)
 class SalespersonAdmin(admin.ModelAdmin):
@@ -18,6 +20,7 @@ class SalespersonAdmin(admin.ModelAdmin):
         "id",
     ]
 
+
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = [
@@ -27,6 +30,7 @@ class CustomerAdmin(admin.ModelAdmin):
         "phone_number",
         "id",
     ]
+
 
 @admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):

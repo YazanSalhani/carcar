@@ -5,7 +5,7 @@ from .views import (
     api_list_customers,
     api_show_customer,
     api_list_sales,
-    api_show_sale
+    api_show_sale,
 )
 
 urlpatterns = [
