@@ -509,21 +509,41 @@ If the appointment was not successfully deleted, the return will be:
 
 ### Inventory API can be accessed from the browser or third party API client on port 8100, and from other microservices using port 8000 (http://inventory-api:8000/api/)
 
+| Action                          | From Third Party API Client                      | In Browser                                         |
+|---------------------------------|--------------------------------------------------|----------------------------------------------------|
+| List all manufacturers          | http://localhost:8100/api/manufacturers/         | http://localhost:5173/manufacturers/               |
+| Create a new manufacturer       | http://localhost:8100/api/manufacturers/         | http://localhost:5173/manufacturers/create/        |
+| Show a manufacturer's details   | http://localhost:8100/api/manufacturers/:id/     | not configured                                     |
+| Update a manufacturer           | http://localhost:8100/api/manufacturers/:id/     | not configured                                     |
+| Delete a manufacturer           | http://localhost:8100/api/manufacturers/:id/     | not configured                                     |
+| List all vehicle models         | http://localhost:8100/api/models/                | http://localhost:5173/models/                      |
+| Create a new vehicle model      | http://localhost:8100/api/models/                | http://localhost:5173/models/create/               |
+| Show vehicle model's details    | http://localhost:8100/api/models/:id/            | not configured                                     |
+| Update a vehicle model          | http://localhost:8100/api/models/:id/            | not configured                                     |
+| Delete a vehicle model          | http://localhost:8100/api/models/:id/            | not configured                                     |
+| List all automobiles            | http://localhost:8100/api/automobiles/           | http://localhost:5173/automobiles/                 |
+| Create a new automobile         | http://localhost:8100/api/automobiles/           | http://localhost:5173/automobiles/create/          |
+| Show an automobile's details    | http://localhost:8100/api/automobiles/:vin/      | not configured                                     |
+| Update an automobile            | http://localhost:8100/api/automobiles/:vin/      | not configured                                     |
+| Delete an automobile            | http://localhost:8100/api/automobiles/:vin/      | not configured                                     |
+
+
+
 ### Services Microservice
 
 #### Services microservice can be accessed from browser and third party API client on port 8080
 
 
-| Action                               | From Third Party API Client                        | In Browser                                         |
-|--------------------------------------|----------------------------------------------------|----------------------------------------------------|
-| List all technicians                 | http://localhost:8080/api/technicians/             | http://localhost:5173/api/technicians/             |
-| Create a new technician              | http://localhost:8080/api/technicians/             | http://localhost:5173/api/technicians/             |
-| Delete a specific technician         | http://localhost:8080/api/technicians/:id/         | not configured                                     |
-| List all appointments                | http://localhost:8080/api/appointments/            | http://localhost:5173/api/appointments/            |
-| Create a new appointment             | http://localhost:8080/api/appointments/            | http://localhost:5173/api/appointments/create/     |
-| Delete an appointment                | http://localhost:8080/api/appointments/:id/        | not configured                                     |
-| Set appointment status to "cancelled"| http://localhost:8080/api/appointments/:id/cancel/ | http://localhost:5173/api/appointments/:id/cancel/ |
-| Set appointment status to "finished" | http://localhost:8080/api/appointments/:id/finish/ | http://localhost:5173/api/appointments/:id/finish/ |
+| Action                               | From Third Party API Client                        | In Browser                                     |
+|--------------------------------------|----------------------------------------------------|------------------------------------------------|
+| List all technicians                 | http://localhost:8080/api/technicians/             | http://localhost:5173/technicians/             |
+| Create a new technician              | http://localhost:8080/api/technicians/             | http://localhost:5173/technicians/             |
+| Delete a specific technician         | http://localhost:8080/api/technicians/:id/         | not configured                                 |
+| List all appointments                | http://localhost:8080/api/appointments/            | http://localhost:5173/appointments/            |
+| Create a new appointment             | http://localhost:8080/api/appointments/            | http://localhost:5173/appointments/create/     |
+| Delete an appointment                | http://localhost:8080/api/appointments/:id/        | not configured                                 |
+| Set appointment status to "cancelled"| http://localhost:8080/api/appointments/:id/cancel/ | http://localhost:5173/appointments/:id/cancel/ |
+| Set appointment status to "finished" | http://localhost:8080/api/appointments/:id/finish/ | http://localhost:5173/appointments/:id/finish/ |
 
 
 ### Sales Microservice
@@ -532,15 +552,32 @@ If the appointment was not successfully deleted, the return will be:
 
 | Action                        | From Third Party API Client                | In Browser                                  |
 |-------------------------------|--------------------------------------------|---------------------------------------------|
-| List all salespeople          | http://localhost:8090/api/salespeople/     | http://localhost:5173/api/salespeople/      |
-| Create a new salesperson      | http://localhost:8090/api/salespeople/     | http://localhost:5173/api/salespeople/      |
+| List all salespeople          | http://localhost:8090/api/salespeople/     | http://localhost:5173/salespeople/          |
+| Create a new salesperson      | http://localhost:8090/api/salespeople/     | http://localhost:5173/salespeople/          |
 | Delete a specific salesperson | http://localhost:8090/api/salespeople/:id/ | not configured                              |
-| List all customers            | http://localhost:8090/api/customers/       | http://localhost:5173/api/customers/        |
-| Create a new customer         | http://localhost:8090/api/customers/       | http://localhost:5173/api/customers/create/ |
+| List all customers            | http://localhost:8090/api/customers/       | http://localhost:5173/customers/            |
+| Create a new customer         | http://localhost:8090/api/customers/       | http://localhost:5173/customers/create/     |
 | Delete a customer             | http://localhost:8090/api/customers/:id/   | not configured                              |
-| List all sales                | http://localhost:8090/api/sales/           | http://localhost:5173/api/sales/            |
-| Create a new sale             | http://localhost:8090/api/customers/       | http://localhost:5173/api/sales/create/     |
+| List all sales                | http://localhost:8090/api/sales/           | http://localhost:5173/sales/                |
+| Create a new sale             | http://localhost:8090/api/customers/       | http://localhost:5173/sales/create/         |
 | Delete a sale                 | http://localhost:8090/api/salespeople/:id/ | not configured                              |
+
+
+## Inventory microservice
+
+### Manufacturer, Vehicle Model, and Automobile Models
+
+API and code was already configured on the back-end to list collection of instances of each model, create a new instance of each model, show specific details of one instance of each model, update an instance of each model, and delete an instance of each model.
+
+However, we configured front-end functionality to:
+- list all manufacturers
+- create a new manufacturer
+- list all vehicle models
+- create a new vehicle model
+- list all automobiles
+- create a new automobile
+
+Additionally, because the Automobile information was necessary for both the Sales and Services microservices, pollers were impletented in the Sales and Services microservices. These pollers check every 60 seconds for new Automobile objects, and then create (or update) AutomobileVO objects in each of the microservices, so that the information can be used as needed.
 
 
 ## Service microservice
@@ -573,7 +610,7 @@ The AutomobileVO objects will be updated or created as a result of the poller re
 
 #### Integration with Inventory microservice
 
-To integrate with the Inventory microservice, a poller was created that checks every 60 seconds for new Automobile objects, and then creates (or updates) a corresponding AutomobileVO object that can be used within the Servuces microservice.
+To integrate with the Inventory microservice, a poller was created that checks every 60 seconds for new Automobile objects, and then creates (or updates) a corresponding AutomobileVO object that can be used within the Services microservice.
 
 ## Sales microservice
 
