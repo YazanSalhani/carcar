@@ -4,7 +4,6 @@ function ServiceHistoryList() {
     const [appointments, setAppointments] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [displayedAppointments, setDisplayedAppointments] = useState([]);
-    const [soldVins, setSoldVins] = useState([]);
 
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -25,27 +24,7 @@ function ServiceHistoryList() {
 
     useEffect(() => {
         fetchData();
-        fetchSoldVins();
     }, []);
-
-    const fetchSoldVins = async () => {
-        const automobilesurl = 'http://localhost:8100/api/automobiles/';
-
-        try {
-            const response = await fetch(automobilesurl);
-            if (response.ok) {
-                const data = await response.json();
-                const soldVins = data.autos
-                    .filter(car => car.sold === true)
-                    .map(car => car.vin);
-                setSoldVins(soldVins);
-            } else {
-                console.error(response)
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -91,11 +70,10 @@ function ServiceHistoryList() {
             </thead>
             <tbody>
             {displayedAppointments.map(appointment => {
-                const isVip = soldVins.includes(appointment.vin) ? "Yes" : "No";
                 return (
                     <tr key={appointment.id}>
                         <td>{appointment.vin}</td>
-                        <td>{isVip}</td>
+                        <td>{appointment.vip}</td>
                         <td>{appointment.customer}</td>
                         <td>{appointment.date_time}</td>
                         <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>

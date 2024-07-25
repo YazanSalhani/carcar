@@ -3,7 +3,6 @@ import React, { useState,useEffect } from "react";
 
 function ServiceAppointmentsList() {
     const [appointments, setAppointments] = useState([]);
-    const [soldVins, setSoldVins] = useState([]);
 
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -23,7 +22,6 @@ function ServiceAppointmentsList() {
 
     useEffect(() => {
         fetchData();
-        fetchSoldVins();
     }, []);
 
     async function appointmentCancel(id){
@@ -63,26 +61,6 @@ function ServiceAppointmentsList() {
     }
 
 
-    const fetchSoldVins = async () => {
-        const automobilesurl = 'http://localhost:8100/api/automobiles/';
-
-        try {
-            const response = await fetch(automobilesurl);
-            if (response.ok) {
-                const data = await response.json();
-                const soldVins = data.autos
-                    .filter(car => car.sold === true)
-                    .map(car => car.vin);
-                setSoldVins(soldVins);
-            } else {
-                console.error(response)
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-
     return (
         <>
         <div>
@@ -101,12 +79,11 @@ function ServiceAppointmentsList() {
             </thead>
             <tbody>
             {appointments.map(appointment => {
-                const isVip = soldVins.includes(appointment.vin) ? "Yes" : "No";
                 if (appointment.status !== "cancelled" && appointment.status !== "finished") {
                     return (
                         <tr key={ appointment.id }>
                             <td>{ appointment.vin }</td>
-                            <td>{ isVip }</td>
+                            <td>{ appointment.vip }</td>
                             <td>{ appointment.customer }</td>
                             <td>{ appointment.date_time }</td>
                             <td>{ appointment.technician.first_name } { appointment.technician.last_name }</td>

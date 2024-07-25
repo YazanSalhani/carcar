@@ -75,6 +75,11 @@ def api_appointments(request):
             content["technician"] = technician
 
             appointment = Appointments.objects.create(**content)
+            autos = AutomobileVO.objects.all()
+            for auto in autos:
+                if appointment.vin == auto.vin and auto.sold == True:
+                    appointment.vip = "Yes"
+                    appointment.save()
             return JsonResponse(
                 appointment,
                 encoder=AppointmentsEncoder,
