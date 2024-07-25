@@ -49,19 +49,13 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = [
-        "vin",
-        "sold"
-    ]
+    properties = ["vin", "sold"]
+
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
-    properties = [
-        "first_name",
-        "last_name",
-        "employee_id",
-        "id"
-    ]
+    properties = ["first_name", "last_name", "employee_id", "id"]
+
 
 class AppointmentsEncoder(ModelEncoder):
     model = Appointments
@@ -73,7 +67,7 @@ class AppointmentsEncoder(ModelEncoder):
         "vip",
         "customer",
         "technician",
-        "id"
+        "id",
     ]
     encoders = {
         "technician": TechnicianEncoder(),
