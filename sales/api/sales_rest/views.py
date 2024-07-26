@@ -248,6 +248,12 @@ def api_list_sales(request):
             automobile = AutomobileVO.objects.get(vin=automobile_vo_vin)
             content["automobile"] = automobile
 
+            if automobile.sold == True:
+                response = JsonResponse(
+                    {"Message": "Invalid automobile. Could not create the sale."})
+                response.status_code = 400
+                return response
+
             salesperson_id = content["salesperson"]
             salesperson = Salesperson.objects.get(id=salesperson_id)
             content["salesperson"] = salesperson
